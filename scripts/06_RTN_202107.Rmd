@@ -1,0 +1,481 @@
+---
+title: "RTN_merge_final"
+author: "Nils Briel"
+date: "22/07/2021"
+output: html_document
+---
+
+version2: 2021/04/27
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+
+REGULATORY TRANSCRIPTIONAL NETWORK ANALYSIS
+
+*Background*: The overall neurodegeneration in the context of the 4R-tauopathy PSP has recently been shown to have a strong genetic signature. Exploring the mechanisms underlying trait-specific expressional changes revealed in part the heterogenous cellular drivers of this disease (Allen et al., 2016 & 2018).  
+To gather insights in the relations between gene expression "orchestrating" transcription factors (TFs) and their putative target genes as a unit of so-called regulons, taking the view from a network-based approach enables to identify essential network elements, that are likely to cause pathogenesis or which contribute to disease establishment.
+
+*Methods*: Using the Bioconductor/RTN package, regulons were inferred based on the information of expression values of 254 temporal cortex samples from the previously mentioned published Mayo(-Pilot)RNA-seq studies. The resulting network was then analysed by master regulator analysis (MRA) to determine core activated or repressed TFs, and gene enrichment analysis (GSEA) to find correlations with specific phenotypes: log2FC and traits (TA). 
+
+*Results*: The 25 937 single transcript counts from the MayoRNAseq study could be mapped to total of 14 060 annotated Ensembl gene identifiers of the hg19 reference genome, whereas a consensus list of human TFs of 1590 (significance classes 'a', 'b', 'c' and 'other')  were mapped to 1097 TFs present in this expression data set. For network inference, only the 176 PSP samples were used, and suggested bootstrapping and dpi-filtering steps applied to reduce false negative findings. The resulting regulon-network showed 31 significant hits (q <= 0.05) in the MRA, hinting toward complex transcriptional regulation changes. But still the need of differentiation of affected cell types and correlations with neuropathologically assessed traits remained. The GSEA-1T raised 32 top regulons with signficant enrichment scores of DEGs (q <= 0.5, score >0.6), setting the normalized read count as phenotype. Trait and cell type-specific top regulons, as assessed by their trait-expression correlation coefficient as phenotype and by a cell-enrichment reference work, showed 21 (TA) differentially active regulons in PSP cortices (q <= 0.05, score >0.3).
+
+*First* make sure to operate in the working directory 
+```{r eval=FALSE, include=FALSE}
+dir.create('RTN')
+setwd('RTN')
+```
+Then load all required packages for *Regulatory Transcriptional Network Inference and Analysis*:
+
+# 0 Load packages
+
+```{r include=FALSE}
+
+library(RTN)
+library(magrittr)
+library(readxl)
+library(readr)
+library(textshape)
+library(dplyr)
+library(ensembldb)
+library(tidyverse)
+library(EnsDb.Hsapiens.v86)
+library(lumi)
+library(lumiHumanIDMapping)
+library(snow)
+library(pheatmap)
+library(viridis)
+library(Biobase)
+library(ggrepel)
+library(colorspace)
+library(data.table)
+set.seed(42)
+
+```
+
+
+# RTN 
+
+# 1 RTNI 
+## 1.2 Prepare RTNI input
+
+### Brain cell expression reference data
+
+```{r include=FALSE}
+
+McKASTenr <- read_csv("../refs/McKASTenr.csv")
+McKNEUenr <- read_csv("../refs/McKNEUenr.csv")
+McKMICenr <- read_csv("../refs/McKMICenr.csv")
+McKOLIenr <- read_csv("../refs/McKOLIenr.csv")
+
+```
+
+
+### RNA-seq expression data with pathology - correlation 
+
+This data was retrieved from:
+
+DEG gene-mapped reads table with Illumina identifiers were downloaded from the primary publication page on Acta Neuropathologica, Suppl. material 1: https://link.springer.com/article/10.1007%2Fs00401-018-1900-5#SupplementaryMaterial  --------  401_2018_1900_MOESM1_ESM.xlsx 
+
+Comprehensive DEG geneID-mapped reads table without Illumina identifiers were downloaded from the AMP-AD knowledge portal with the accession ID #syn6090807
+
+```{r include=FALSE}
+
+DEGdata_TA <- read_excel("../refs/Allen_data_20191105.xlsx",sheet = "SupplTable4")
+```
+```{r}
+head(DEGdata_TA)
+
+```
+
+set input for selection of expression data and retrieve identifier annotations:
+Mayo_covariates were downoaded from the the AMP-AD knowledge portal with the accession ID doi:10.7303/syn3817650.5
+
+*Mayo PILOT RNA-seq - PSP TCX* normalized gene-mapped read counts were downloaded from the AMP-AD knowledge portal with the accession ID 10.7303/syn3607513.1
+*Mayo RNA-seq - PSP TCX* normalized gene-mapped read counts were downloaded from the AMP-AD knowledge portal with the accession ID 10.7303/syn4650265.4  
+
+```{r include=FALSE}
+
+Mayo_covariates <- read.csv("../refs//MayoRNAseq_RNAseq_TCX_covariates.csv")
+PSPMayo_covariates <- subset(Mayo_covariates, Diagnosis == 'PSP') 
+rownames(PSPMayo_covariates) = c(1:84)
+Ctrl_covariates <- subset(Mayo_covariates, Diagnosis == 'Control')
+rownames(Ctrl_covariates) = c(1:78)
+
+PSPMayoPilot_covariates <- read_csv("../refs//MayoPilotRNAseq_RNAseq_TCX_PSP_covariates.csv") %>% dplyr::filter(!is.na(Sex))
+
+MayoPilot_geneCounts <- read.table("../refs/MayoPilotRNAseq_RNAseq_TCX_PSP_geneCounts_normalized.tsv") %>% as_tibble()
+  MayoPilot_geneCounts$X1811024331_B = NULL 
+  MayoPilot_geneCounts$X1811024560_B <- NULL 
+  MayoPilot_geneCounts$X1811024561_B <- NULL 
+  MayoPilot_geneCounts$X1811024502_B <- NULL 
+  
+Mayo_geneCounts <- read.delim("../refs/MayoRNAseq_RNAseq_TCX_geneCounts_normalized.tsv", header=F)
+colnames(Mayo_geneCounts) <- Mayo_geneCounts[1, ]
+names(Mayo_geneCounts) <- lapply(Mayo_geneCounts[1, ], as.character)
+Mayo_geneCounts <- Mayo_geneCounts[-c(1),] %>% textshape::column_to_rownames(loc=1)
+
+PSP_Mayo_geneCounts <- Mayo_geneCounts %>% dplyr::select(one_of(as.character(PSPMayo_covariates$SampleID)))
+
+Ctrl_Mayo_geneCounts <- Mayo_geneCounts %>% dplyr::select(one_of(as.character(Ctrl_covariates$SampleID)))
+
+
+PSP_counts <- cbind(MayoPilot_geneCounts, PSP_Mayo_geneCounts) 
+PSP_counts[] <- lapply(PSP_counts, function(x) {
+    if(is.factor(x)) as.numeric(as.character(x)) else x
+     })
+
+PSP_Ctrl_counts <- cbind(MayoPilot_geneCounts, PSP_Mayo_geneCounts, Ctrl_Mayo_geneCounts)
+PSP_Ctrl_counts[] <- lapply(PSP_Ctrl_counts, function(x) {
+    if(is.factor(x)) as.numeric(as.character(x)) else x
+     })
+
+```
+
+
+fetch gene names for data -> rowAnnotations as 2nd input
+
+```{r include=FALSE}
+
+library(EnsDb.Hsapiens.v86)
+edb <- EnsDb.Hsapiens.v86
+rowAnnotations <- ensembldb::select(edb, keys = row.names(PSP_counts), keytype = "GENEID",
+                  columns = c("GENEID", "SYMBOL", "GENENAME"))
+rowAnnotations$GENEID_2 <- rowAnnotations$GENEID
+rowAnnotations <- textshape::column_to_rownames(rowAnnotations, loc = 4)
+head(rowAnnotations)
+
+df1 <-subset(PSP_counts, row.names(PSP_counts) %in% rowAnnotations$GENEID & row.names(PSP_counts) %in% DEGdata_TA$DEG_ENSEMBLID)  
+
+df1m <- data.matrix(df1)
+
+```
+
+
+Fetch all human TFs derived from a consensus solution (Vaquerizas et al. 2018, DOI: 10.1038/nrg2538) 
+
+```{r include=FALSE}
+
+tfs_3 <- read.delim("../refs/tfs_Vaquerizas_input")
+tfs_3 <- subset(tfs_3, tfs_3$Class %in% c("a", "b", "other", "c"))
+edb <- EnsDb.Hsapiens.v86
+tfs_3 <- ensembldb::select(edb, keys = as.character(tfs_3$Ensembl.ID), keytype = "GENEID",
+                        columns = c("GENEID", "SYMBOL", "GENENAME"))
+tfs_input <- as.vector(tfs_3$SYMBOL)
+
+```
+```{r}
+
+head(tfs_input)
+
+```
+
+
+## 1.3 TNI-class construction
+set pValue-cutoff to: 1 060 TFs * 14 000 tested genes / 5 false-positive accepted TF-target interactions
+
+```{r include=FALSE}
+library(snow)
+rtni <- tni.constructor(expData = df1m,
+                        regulatoryElements = tfs_input,
+                        rowAnnotation = rowAnnotations)
+options(cluster=snow::makeCluster(spec=6, "SOCK"))
+rtni <- tni.permutation(rtni, nPermutations = 1000, ##should be >=1000 
+                        pValueCutoff = 3.21e-7) %>%
+  tni.bootstrap() %>% 
+  tni.dpi.filter(eps = NA)
+snow::stopCluster(getOption("cluster"))
+
+tni.regulon.summary(rtni)
+
+```
+```{r}
+
+regulons <- tni.get(rtni, what = "regulons.and.mode", idkey = "SYMBOL")
+head(regulons)
+
+```
+
+
+# 2 coeffTA - RTNA
+
+## 2.1 RTNA-prepare input
+
+Define pathology and TA regression coefficient for modeling:
+
+
+define TA - regression coeff as phenotype:
+
+```{r include=FALSE}
+##IF working with Illumina probe IDs:
+phenotype <- as.numeric(DEGdata_TA$A_TA_Coefficient)
+
+names(phenotype) <- c(DEGdata_TA$PROBE_ID)
+
+DEG_q05 <- subset(DEGdata_TA, DEG_qValue <= 0.05)
+hits <- unique(DEG_q05$PROBE_ID)
+
+##IF working with Illumina probe IDs mk sure, the 'Transcriptional Network' (RTNI) holds information on probe_ID!
+library(lumi)
+library(lumiHumanIDMapping)
+pheno_annot <- data.frame(probeID2nuID(probeID = unique(DEGdata_TA$PROBE_ID), 
+                                         lib.mapping = "lumiHumanIDMapping"),
+                                         row.names = unique(DEGdata_TA$PROBE_ID))
+
+pheno_annot$ILMN_Gene = row.names(pheno_annot)
+pheno_annot$Search_Key = NULL
+pheno_annot$Accession = NULL
+```
+```{r}
+head(phenotype)
+head(hits)
+head(pheno_annot)
+
+```
+
+
+### Preprocessing
+
+```{r include=FALSE}
+
+rtna_TA <- tni2tna.preprocess(object = rtni,
+                           phenotype = phenotype, 
+                           hits = hits, 
+                           phenoIDs = pheno_annot)
+
+```
+
+
+### GSEA-1T
+Run the GSEA 1-tailed method
+
+```{r include=FALSE}
+options(cluster=snow::makeCluster(spec=4, "SOCK"))
+rtna_TA <- tna.gsea1(rtna_TA, stepFilter=FALSE, nPermutations=1000) # set nPermutations >= 1000
+  snow::stopCluster(getOption("cluster"))
+  gsea1_TA <- tna.get(rtna_TA, what="gsea1", ntop = -1)
+
+tfs_interest <- subset(gsea1_TA, gsea1_TA$Adjusted.Pvalue <= .05 & Observed.Score >= 0.5)$Regulon
+
+head(gsea1_TA)
+```
+
+
+### GSEA-2T 
+Run the GSEA 2-tailed method
+
+```{r include=FALSE}
+
+options(cluster=snow::makeCluster(spec=4, "SOCK"))
+rtna_TA <- tna.gsea2(rtna_TA, stepFilter = FALSE, nPermutations = 1000) # set nPermutations >= 1000
+  snow::stopCluster(getOption("cluster"))
+  
+```
+
+
+Get & plot GSEA-2T results
+
+```{r include=FALSE}
+gsea2_TA <- tna.get(rtna_TA, what = "gsea2", ntop = -1)
+
+head(gsea2_TA$differential)
+```
+```{r}
+#tfs_plot_gsea2 <- subset()
+tna.plot.gsea2(rtna_TA, labPheno="(TA r^2)", regulon.order = "score", tfs = #gsea2_TA$positive[which(gsea2_TA$positive$Adjusted.Pvalue < 0.005),'Regulon'],
+                 c("EMX2","FEZF2","FOXO1","GLIS3","ID4","NR2E1","PAX6","PPARA","RFX4","SOX2","SOX9","TEAD1","TFAP2C","TRPS1","ZHX3","ZIC5","KLF15","ZNF827","TCF7L2","NFIA","ZIC2"), 
+               plotpdf = F)
+
+
+```
+
+
+### Saving data
+save Rdata:
+```{r include=FALSE}
+
+saveRDS(gsea1_TA, file="gsea1_final_TA.Rds")
+saveRDS(gsea2_TA, file="gsea2_final_TA.Rds")
+saveRDS(rtna_TA, file="rtna_final_TA.Rds")
+
+```
+
+
+### Plot results
+
+The rtni-samples have already been replaced by the complete cohort before.
+Now, TA-specific regulon activity computed for all PSP samples (n = 176) is computed for each single individual plus all controls from the MayoRNAseq-study cohort (n = 76).
+
+```{r include=FALSE}
+# Get pheno? attributes for pheatmap
+annot_1 <- data.frame(sample = PSPMayo_covariates$SampleID, Diagnosis = as.factor(PSPMayo_covariates$Diagnosis), Gender=as.factor(PSPMayo_covariates$Gender), AgeAtDeath=as.numeric(as.vector(PSPMayo_covariates$AgeAtDeath)), cohort=1)
+Ctrl_covariates$AgeAtDeath <- as.character(Ctrl_covariates$AgeAtDeath)
+Ctrl_covariates$AgeAtDeath <- ifelse(Ctrl_covariates$AgeAtDeath == '90_or_above', ('90'), Ctrl_covariates$AgeAtDeath)
+
+annot_2 <- data.frame(sample = Ctrl_covariates$SampleID, Diagnosis = as.factor(Ctrl_covariates$Diagnosis), Gender=as.factor(Ctrl_covariates$Gender), AgeAtDeath=as.numeric(Ctrl_covariates$AgeAtDeath), cohort=2)
+
+annot_3 <- data.frame(sample = PSPMayoPilot_covariates$IlluminaSampleID, Diagnosis = as.factor(c('PSP')), Gender=as.factor(PSPMayoPilot_covariates$Sex), AgeAtDeath=as.numeric(as.vector(PSPMayoPilot_covariates$Age_at_death)), cohort=3)
+annot_pheatmap <- rbind(annot_1,annot_2, annot_3) %>% textshape::column_to_rownames(loc = 1)
+annot_pheatmap_sml <- rbind(annot_1, annot_2) %>% textshape::column_to_rownames(loc = 1)
+saveRDS(annot_pheatmap, 'annot_pheatmap.Rds')
+
+# prepare data.matrix
+df2 <- subset(PSP_Ctrl_counts, row.names(PSP_Ctrl_counts) %in% rtni@rowAnnotation$GENEID)
+df2m <- as.matrix(sapply(df2, as.numeric))
+rownames(df2m)<- rownames(df2)
+rowAnnotations2 <- ensembldb::select(edb, keys = row.names(PSP_Ctrl_counts), keytype = "GENEID",
+                  columns = c("GENEID", "SYMBOL", "GENENAME"))
+rowAnnotations2$GENEID_2 <- rowAnnotations2$GENEID
+rowAnnotations2 <- textshape::column_to_rownames(rowAnnotations2, loc = 4)
+
+rtni1st_psp_ctrl <- tni.replace.samples(rtni, df2m, rowAnnotation = rowAnnotations2)
+int_tfs_TA <- subset(gsea2_TA$differential, Adjusted.Pvalue < 0.05)$Regulon 
+
+
+options(cluster=snow::makeCluster(spec=8, "SOCK"))
+Tau_TA_regact <- tni.gsea2(rtni1st_psp_ctrl, regulatoryElements = int_tfs_TA)
+Tau_TApsp_regact <- tni.gsea2(rtni, regulatoryElements = int_tfs_TA)
+Tau_TActrl_regact <- tni.gsea2(rtni, regulatoryElements = int_tfs_TA)
+  snow::stopCluster(getOption("cluster"))
+  
+Tau_TA_diff  <- matrixTests::col_t_welch(Tau_TA_regact@results$regulonActivity$differential[which(annot_pheatmap$Diagnosis=='Control'),],
+                                         Tau_TA_regact@results$regulonActivity$differential[which(annot_pheatmap$Diagnosis=='PSP'),])
+Tau_TA_diff$adj.p <- p.adjust(Tau_TA_diff$pvalue, method = 'BH', n = nrow(Tau_TA_diff))
+int_tfs_TA <- rownames(subset(Tau_TA_diff, adj.p < 0.0001))[1:50]
+saveRDS(Tau_TA_regact, 'RTN/Tau_TA_regact_20210520.Rds')
+#see above
+```
+```{r}
+annot_pheatmap_sml$Gender <- as.factor(ifelse(annot_pheatmap_sml$Gender == 'F', 'Female', 'Male'))
+ann_colors = list(
+    Diagnosis = c(Control = "#608bb3", PSP = "#72ba59"),
+    Gender = c(Female ='#c45252', Male ='#608bb3'),
+    AgeAtDeath = sequential_hcl(n=264, 'Reds', rev = T)
+)
+library(colorspace) ##########
+heat1 <- plot(ggplotify::as.ggplot(pheatmap(t(Tau_TA_regact@results$regulonActivity$differential[rownames(annot_pheatmap_sml),int_tfs_TA]), 
+         main="TA-associated RAP",
+         annotation = annot_pheatmap_sml[,1:3], 
+         annotation_colors = ann_colors,
+         show_colnames = F, show_rownames = T, annotation_legend = T,
+         treeheight_row = 30, 
+         color = colorspace::diverge_hcl(n=264,palette = 'Blue-Red'),border_color = 'black',
+         clustering_method = "ward.D2", fontsize = 8,
+         cluster_rows = T,
+         cluster_cols = T,
+         #gaps_col = 162,
+         cutree_cols = NA,
+         cutree_rows = 3,
+         kmeans_k = NA,
+         clustering_distance_cols = 'euclidean'))
+         )
+    
+cairo_pdf(file = "RTN/heat_fig_5.pdf", width = 10, height = 10)
+plot(heat1)
+dev.off()
+```
+
+
+# 2.2 RedeR Visualization
+```{r}
+plot_RTN <- c('JUNB', 'NFE2L3','FOSL2', 'NFATC3', 'KLF2', 'FOXP3')
+plot_RTN <- tni.graph(rtni, regulatoryElements = plot_RTN)
+
+library(RedeR)
+rdp <- RedPort()
+calld(rdp)
+addGraph(rdp, plot_RTN, layout=NULL)
+addLegend.color(rdp, plot_RTN, type="edge")
+addLegend.shape(rdp, plot_RTN)
+relax(rdp, ps = TRUE)
+```
+
+
+#3 GO
+```{r include=FALSE, fig.width=8, fig.height=8}
+# retrieve ensemble and gene IDs of all TFs in the gexp matrix
+regulon_genes <- tna.get(rtna_TA, what = 'regulons') %>% 
+   .[c(int_tfs_TA)] %>% 
+   BiocGenerics::unlist(., recursive=F, use.names=T) %>% 
+   data.frame %>%
+   rbind(., int_tfs_TA) %>% 
+   unique() 
+
+source('04_cicero_analysis_functions.R')
+annot <- getTFannotations(regulon_genes$., genes = T) %>% subset(., gene_name %in% regulon_genes$.)
+deg_vals <- DEGdata_TA[which(DEGdata_TA$GENE_NAME %in% annot$gene_name),c("DEG_qValue", 'DEG_ENSEMBLID')]
+colnames(deg_vals)[2] <- 'gene_id'
+input <- left_join(annot, deg_vals, by = c("gene_id")) %>% unique() %>% dplyr::select('gene_name','DEG_qValue')
+input <- input[complete.cases(input), ]
+
+### pathway analysis
+library("pathfindR")
+pathPSP <- dplyr::select(x, 'gene_name', 'median.diff', 'FDR')
+output_psp <- run_pathfindR(input, gene_sets = 'GO-All', output_dir = 'RTN/GO_PSP_RTN') 
+clustered_psp <- cluster_enriched_terms(output_psp, use_description = T)
+
+cairo_pdf('RTN/cl_psp_regulons.pdf', width=6, height = 8)
+plot(enrichment_chart(result_df = clustered_psp[order(clustered_psp$Fold_Enrichment),][1:100,],plot_by_cluster = T, 
+                 top_terms = 50)
+)
+dev.off()
+
+
+  mat <- t(Tau_TA_regact@results$regulonActivity$differential[which(annot_pheatmap_sml$Diagnosis=='PSP'),int_tfs_TA])
+  mat_bg <- t(Tau_TA_regact@results$regulonActivity$differential[which(annot_pheatmap_sml$Diagnosis=='Control'),int_tfs_TA])
+  x <- matrixTests::row_wilcoxon_twosample(as.matrix(mat), as.matrix(mat_bg)) # Wilcoxon rank-sum test
+  x$FDR <- p.adjust(x$pvalue, method = 'BH', n = length(x$pvalue)) # Benjamini-Hochberg False discovery correction applied
+  x$median.diff <- matrixStats::rowMedians(as.matrix(mat)) - matrixStats::rowMedians(as.matrix(mat_bg))
+  x$gene_name <- rownames(x)
+mat_x <- data.table(mat, keep.rownames = T) %>% column_to_rownames('rn') %>% t() %>% as.data.frame()
+mat_x$dis <- 'PSP'
+mat_c <- data.table(mat_bg, keep.rownames = T) %>% column_to_rownames('rn')%>% t()%>% as.data.frame()
+mat_c$dis <- 'Ctrl'
+  
+ggpubr::ggboxplot(rbind(mat_c, mat_x), x = 'dis', y = 'ATF4', fill = 'dis', color = 'black', xlab = '', ylab = 'Regulon activity',
+                 add = "jitter", add.params = list(color = 'black', alpha = 0.5)) +
+       ggpubr::stat_compare_means(label = "p.format", method = "wilcox.test", hide.ns = T)+
+       labs(fill = 'Entity')+ geom_hline(yintercept = 0, linetype = 2, color = 'grey40') + 
+       theme_bw(base_family="Arial") +theme(legend.position="bottom")+ scale_fill_manual(values=c("#377EB8", "#E41A1C"))
+
+
+x <- Tau_TA_diff[int_tfs_TA,c('mean.diff', 'adj.p')] %>% rownames_to_column(var = 'gene_name') 
+output_psp_tfs <- run_pathfindR(x, gene_sets = 'GO-All', output_dir = 'RTN/GO_PSP_RTN_Tfs') 
+clustered_psp <- cluster_enriched_terms(output_psp_tfs, use_description = T)
+
+cairo_pdf('RTN/cl_psp_regulons.pdf', width=6, height = 8)
+plot(enrichment_chart(result_df = clustered_psp[order(clustered_psp$Fold_Enrichment),][1:100,],plot_by_cluster = T, 
+                 top_terms = 25)
+)
+dev.off()
+
+set.seed(42)
+heatp <- term_gene_heatmap(output_psp_tfs[order(output_psp_tfs$Fold_Enrichment),][1:25, ], use_description = T, genes_df = x, 
+                  low = diverge_hcl(n = 3, palette = 'Blue-Red 3')[1],
+                  mid = diverge_hcl(n = 3, palette = 'Blue-Red 3')[2],
+                  high = diverge_hcl(n = 3, palette = 'Blue-Red 3')[3])
+
+
+upsp <- UpSet_plot(output_psp_tfs[order(output_psp_tfs$Fold_Enrichment),][1:50, ],use_description = T,num_terms = 50,
+           low = diverge_hcl(n = 3, palette = 'Blue-Red')[1],
+           mid = diverge_hcl(n = 3, palette = 'Blue-Red')[2],
+           high = diverge_hcl(n = 3, palette = 'Blue-Red')[3])
+
+```
+
+
+
+```{r}
+
+print("Part 06 is done: Now continue with '07_branch_integration_202107.R'")
+sessionInfo()
+
+```
+
+
+
+

@@ -1,0 +1,85 @@
+---
+title: "cellranger-atac and snap-pre"
+author: "Nils Briel, Feodor-Lynen-Strasse 23, 81377 Munich, Bavaria"
+date: "22/07/2021"
+output: markdown
+---
+
+# Description
+This document describes the analysis of bcl2fastq-yielded fastq files with cellranger-atac 1.2.0, includes besides this the direct bam rearrangement and snap generation as needed downstream in the SnapATAC-pipeline.
+
+
+Make missing output directory for snap files:
+```{bash}
+mkdir ~/projs/scATACseq_MLL/snaps/
+
+cd ~/projs/scATACseq_MLL/
+```
+
+Open several tmux tiles in terminal with identifier (modify for each of the libs to be analysed):
+```{bash}
+tmux new -snum115_cr
+for num in 102 104 105 108 112 113 114 115 C1 C2 C3 C4 C5
+do
+
+   cellranger-atac count --id=num${num} \
+                   --localcores=3 \
+                   --reference=/deep/home/nibriel/cellranger/refdata-cellranger-atac-hg19-1.2.0 \
+                   --fastqs=FASTQ \
+                   --sample=${num} 
+   
+   cd ~/projs/scATACseq_MLL/num${num}/outs/
+   
+   # extract header file
+   samtools view possorted_bam.bam -H > possorted.header.sam
+   
+   # create a bam file with the barcode embedded into the read name
+   cat <( cat possorted.header.sam ) \
+   <( samtools view possorted_bam.bam | awk '{for (i=12; i<=NF; ++i) { if ($i ~ "^CB:Z:"){ td[substr($i,1,2)] = substr($i,6,length($i)-5); } }; printf "%s:%s\n", td["CB"], $0 }' ) \
+   | samtools view -bS - > possorted.snap.bam
+   
+   samtools view possorted.snap.bam | cut -f 1 | head 
+   
+   samtools sort -n -@ 4 -m 1G possorted.snap.bam -o num${num}.snap.nsrt.bam
+   
+   ### 1.1.2 snap file generation
+   snaptools snap-pre  \
+   	--input-file=num${num}.snap.nsrt.bam  \
+   	--output-snap=num${num}.snap  \
+   	--genome-name=hg19 \
+   	--genome-size=/deep/home/nibriel/R/snaptools/hg19.chrom.sizes  \
+   	--min-mapq=30  \
+   	--min-flen=50  \
+   	--max-flen=1000  \
+   	--keep-chrm=TRUE  \
+   	--keep-single=FALSE  \
+   	--keep-secondary=False  \
+   	--overwrite=True  \
+   	--max-num=20000  \
+   	--min-cov=500  \
+   	--verbose=True
+   	
+   snaptools snap-add-bmat \
+    --snap-file=num${num}.snap \
+    --bin-size-list 1000 5000 10000 \
+    --verbose=True
+   	
+   cp num${num}.snap ~/projs/scATACseq_MLL/snaps/	
+   
+   rm possorted.header.sam
+   exit
+   
+done
+```
+
+# Part 01 is done, now you can go on with '02_snapatac_analysis.R' 
+
+```{bash}
+#rm ###.snap.snap.bam 
+rm possorted.header.sam
+tmux new -snum102_snap_addbmat
+```
+```{r}
+sessionInfo()
+```
+

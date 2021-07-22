@@ -1,0 +1,279 @@
+SampleID,Source,Tissue,RIN,Diagnosis,Gender,AgeAtDeath,ApoE,FLOWCELL,PMI,Braak,Thal
+1005_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,AD,F,90_or_above,33,BC5RK6ACXX,8,6,5
+1010_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,AD,M,63,33,BC5RK8ACXX,,6,5
+1015_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,AD,M,77,34,BC47B4ACXX,6,6,5
+1019_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,AD,F,86,34,AC450BACXX,4,6,5
+1029_TCX,MayoBrainBank_Dickson,TemporalCortex,9.7,AD,F,69,33,BC5RK8ACXX,4,6,5
+1034_TCX,MayoBrainBank_Dickson,TemporalCortex,8.9,AD,F,88,23,BC5RNRACXX,5,6,5
+1036_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,AD,M,90_or_above,33,BC47B4ACXX,,5,
+1045_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,F,90_or_above,33,AC5R6PACXX,,5,
+1046_TCX,MayoBrainBank_Dickson,TemporalCortex,9,AD,F,72,33,BC5RNRACXX,2,6,5
+1047_TCX,MayoBrainBank_Dickson,TemporalCortex,9.1,AD,M,86,34,AC44RVACXX,7,6,
+1052_TCX,MayoBrainBank_Dickson,TemporalCortex,9.4,AD,M,90_or_above,33,BC47B4ACXX,,5,
+1058_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,AD,M,90_or_above,33,AC44RVACXX,5,6,5
+1078_TCX,MayoBrainBank_Dickson,TemporalCortex,8,AD,F,85,33,BC6178ACXX,,5.5,3
+1085_TCX,MayoBrainBank_Dickson,TemporalCortex,10,AD,F,82,33,AC5R6PACXX,15,6,5
+1089_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,AD,F,77,44,BC5RK8ACXX,,6,5
+1098_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,AD,F,90_or_above,34,AC6366ACXX,,5,
+1103_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,M,76,23,AC450BACXX,4,5,5
+1104_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,AD,F,60,33,AC450BACXX,4,5,5
+1105_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,F,90_or_above,34,AC5T1WACXX,6,6,5
+1114_TCX,MayoBrainBank_Dickson,TemporalCortex,8,AD,M,82,34,AC5R6PACXX,,5,5
+1119_TCX,MayoBrainBank_Dickson,TemporalCortex,7.7,AD,F,70,34,BC5RK6ACXX,,5,5
+1121_TCX,MayoBrainBank_Dickson,TemporalCortex,9.2,AD,F,66,44,BC5RK6ACXX,,6,5
+1123_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,F,83,33,BC47B4ACXX,4,5,
+1129_TCX,MayoBrainBank_Dickson,TemporalCortex,9.1,AD,F,83,34,AC5T2GACXX,5,6,5
+1137_TCX,MayoBrainBank_Dickson,TemporalCortex,8,AD,F,82,33,BC47ADACXX,,5,
+1166_TCX,MayoBrainBank_Dickson,TemporalCortex,8.1,AD,M,84,33,AC5T1WACXX,6,5.5,5
+1169_TCX,MayoBrainBank_Dickson,TemporalCortex,8.9,AD,M,90_or_above,33,BC5RK8ACXX,16,5,4
+1172_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,AD,F,90_or_above,33,AC6366ACXX,30,4.5,
+1183_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,AD,M,82,33,AC44HKACXX,4,4.5,5
+1195_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,M,65,44,BC5RNRACXX,14,6,
+1200_TCX,MayoBrainBank_Dickson,TemporalCortex,9.2,AD,F,76,34,AC44HKACXX,,5,5
+1203_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,F,89,33,AC5T1WACXX,,5,5
+1214_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,M,80,34,BC5RNRACXX,,5,5
+1239_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,AD,M,87,33,BC6178ACXX,5,5,5
+127_TCX,MayoBrainBank_Dickson,TemporalCortex,8,AD,M,79,34,AC450BACXX,22,6,5
+1271_TCX,MayoBrainBank_Dickson,TemporalCortex,8.1,AD,F,90_or_above,34,BC5RNRACXX,,5.5,5
+1275_TCX,MayoBrainBank_Dickson,TemporalCortex,9.2,AD,F,89,23,AC5R6PACXX,6,5,
+129_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,F,89,34,BC47ADACXX,19,6,5
+1302_TCX,MayoBrainBank_Dickson,TemporalCortex,9.3,AD,M,86,34,BC5RK8ACXX,7,6,5
+134_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,AD,F,82,34,BC6178ACXX,,6,5
+135_TCX,MayoBrainBank_Dickson,TemporalCortex,9.3,AD,F,81,34,BC47ADACXX,,6,5
+141_TCX,MayoBrainBank_Dickson,TemporalCortex,8.1,AD,F,77,44,AC450BACXX,5,6,5
+142_TCX,MayoBrainBank_Dickson,TemporalCortex,9.4,AD,F,89,34,AC5R6PACXX,3,6,5
+149_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,AD,F,90_or_above,33,AC60K0ACXX,4,6,5
+731_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,M,90_or_above,33,AC44HKACXX,,5,5
+732_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,AD,F,84,34,BC5RK8ACXX,5,6,4
+736_TCX,MayoBrainBank_Dickson,TemporalCortex,9.2,AD,M,86,33,AC6366ACXX,18,6,
+742_TCX,MayoBrainBank_Dickson,TemporalCortex,8.1,AD,F,90_or_above,33,AC44RVACXX,,6,
+744_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,AD,M,73,33,BC47ADACXX,,5,
+746_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,AD,M,76,33,BC6178ACXX,4,5.5,5
+751_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,M,64,34,AC5RKCACXX,,6,5
+766_TCX,MayoBrainBank_Dickson,TemporalCortex,9.6,AD,F,85,34,AC44RVACXX,5,4.5,5
+775_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,AD,M,75,34,BC47ADACXX,,5,
+777_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,AD,M,87,33,AC450BACXX,5,5,
+783_TCX,MayoBrainBank_Dickson,TemporalCortex,7.7,AD,F,87,34,AC450BACXX,,6,
+786_TCX,MayoBrainBank_Dickson,TemporalCortex,10,AD,M,88,34,AC450BACXX,5,5.5,5
+787_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,F,85,34,AC5R6PACXX,4,6,5
+791_TCX,MayoBrainBank_Dickson,TemporalCortex,9.5,AD,F,89,33,AC44HKACXX,5,4.5,5
+797_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,AD,M,85,33,AC5R6PACXX,,4.5,
+812_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,F,78,44,AC5R6PACXX,3,6,5
+813_TCX,MayoBrainBank_Dickson,TemporalCortex,8,AD,M,90_or_above,34,AC5T2GACXX,5,5,5
+816_TCX,MayoBrainBank_Dickson,TemporalCortex,9.1,AD,M,82,34,AC5T1WACXX,18,6,
+828_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,AD,M,90_or_above,23,BC5RNRACXX,7,6,
+834_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,AD,M,78,44,AC6366ACXX,,5,4
+843_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,AD,F,87,34,BC5RNRACXX,,5,5
+850_TCX,MayoBrainBank_Dickson,TemporalCortex,8,AD,F,90_or_above,34,AC60K0ACXX,6,6,
+851_TCX,MayoBrainBank_Dickson,TemporalCortex,9.2,AD,F,87,33,BC5RK8ACXX,,5,
+859_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,F,90_or_above,33,BC5RK6ACXX,3,6,
+871_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,AD,F,90_or_above,33,BC47ADACXX,,5,
+886_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,AD,F,74,34,BC6178ACXX,4,5,3
+892_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,M,84,33,AC5RKCACXX,2,4.5,
+894_TCX,MayoBrainBank_Dickson,TemporalCortex,9.1,AD,M,87,33,AC5T2GACXX,12,6,
+896_TCX,MayoBrainBank_Dickson,TemporalCortex,9,AD,F,80,34,BC47B4ACXX,3,6,5
+933_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,AD,F,81,34,AC44RVACXX,4,5.5,5
+946_TCX,MayoBrainBank_Dickson,TemporalCortex,9,AD,F,77,33,AC44HKACXX,4,5,5
+948_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,F,82,33,AC5RKCACXX,4,5,5
+952_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,AD,F,83,34,AC6366ACXX,3,6,5
+962_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,M,66,34,AC6366ACXX,,6,5
+966_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,AD,F,79,44,AC5R6PACXX,16,6,5
+976_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,AD,F,90_or_above,34,AC5R6PACXX,7,6,5
+981_TCX,MayoBrainBank_Dickson,TemporalCortex,8,AD,F,90_or_above,34,BC5RK6ACXX,3,5,
+991_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,AD,M,87,34,BC47B4ACXX,,6,3
+11263_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.6,Control,F,58,23,AC5T2GACXX,3,,
+11265_TCX,BannerSunHealth_TomBeach,TemporalCortex,5.7,Control,F,59,33,BC5RK6ACXX,3,,
+11266_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.8,Control,F,76,34,AC450BACXX,4,,
+11288_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.3,Control,F,82,33,AC5RKCACXX,2,,
+11289_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.3,Control,F,88,34,BC47ADACXX,3,,
+11293_TCX,BannerSunHealth_TomBeach,TemporalCortex,6,Control,F,75,33,BC5RK6ACXX,,,
+11294_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.4,Control,F,82,33,AC44RVACXX,2,,
+11311_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.2,Control,F,86,23,BC6178ACXX,2,,
+11314_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.1,Control,F,88,23,AC6366ACXX,,,
+11317_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.5,Control,F,79,23,AC5RKCACXX,2,,
+11319_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.4,Control,F,89,33,AC5RKCACXX,3,,
+11320_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.9,Control,F,68,33,BC6178ACXX,2,,
+11321_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.6,Control,F,88,33,BC6178ACXX,11,,
+11322_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.6,Control,F,90_or_above,33,AC5T1WACXX,,,
+11323_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.1,Control,F,90_or_above,33,AC450BACXX,,,
+11325_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.5,Control,F,87,33,BC6178ACXX,4,,
+11337_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.2,Control,F,84,33,BC47B4ACXX,3,,
+11340_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.5,Control,F,90_or_above,23,BC47ADACXX,,,
+11341_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.8,Control,F,86,33,BC47B4ACXX,2,,
+11385_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.4,Control,M,76,34,BC47B4ACXX,,,
+11386_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.3,Control,M,65,33,AC60K0ACXX,3,,
+11387_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.7,Control,M,53,33,AC6366ACXX,,,
+11388_TCX,BannerSunHealth_TomBeach,TemporalCortex,8,Control,M,81,33,AC5R6PACXX,2,,
+11389_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.5,Control,M,76,33,BC5RK8ACXX,2,,
+11391_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.5,Control,M,86,33,BC6178ACXX,4,,
+11393_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.8,Control,M,71,33,BC6178ACXX,3,,
+11394_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.5,Control,M,61,33,BC5RNRACXX,2,,
+11395_TCX,BannerSunHealth_TomBeach,TemporalCortex,7,Control,M,68,33,AC450BACXX,2,,
+11396_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.9,Control,M,78,33,AC44RVACXX,1,,
+11397_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.8,Control,M,75,33,AC5R6PACXX,3,,
+11398_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.2,Control,M,74,23,AC44HKACXX,,,
+11399_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.5,Control,M,79,33,AC44HKACXX,3,,
+11400_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.2,Control,M,83,34,BC47B4ACXX,3,,
+11416_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.8,Control,M,84,33,BC47ADACXX,3,,
+11417_TCX,BannerSunHealth_TomBeach,TemporalCortex,5.5,Control,M,80,33,BC5RK6ACXX,3,,
+11422_TCX,BannerSunHealth_TomBeach,TemporalCortex,8,Control,M,63,33,AC5T2GACXX,1,,
+11428_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.9,Control,M,73,33,BC5RK6ACXX,,,
+11429_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.5,Control,M,79,33,AC5T1WACXX,3,,
+11430_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.7,Control,M,89,33,AC5RKCACXX,5,,
+11431_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.4,Control,M,85,33,AC44HKACXX,3,,
+11463_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.9,Control,M,80,33,AC6366ACXX,2,,
+11465_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.9,Control,M,82,33,BC47ADACXX,,,
+11468_TCX,BannerSunHealth_TomBeach,TemporalCortex,7,Control,M,74,23,AC5RKCACXX,4,,
+11469_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.4,Control,M,81,33,AC5T1WACXX,2,,
+11470_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.3,Control,M,73,23,AC5T1WACXX,2,,
+11472_TCX,BannerSunHealth_TomBeach,TemporalCortex,6,Control,M,86,34,BC6178ACXX,2,,
+11474_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.4,Control,M,83,33,BC5RNRACXX,3,,
+11476_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.4,Control,M,82,33,BC5RK8ACXX,2,,
+11485_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.7,Control,M,85,23,AC5T2GACXX,12,,
+1919_TCX,MayoBrainBank_Dickson,TemporalCortex,9.3,Control,F,87,33,AC5R6PACXX,5,1,2
+1923_TCX,MayoBrainBank_Dickson,TemporalCortex,6.6,Control,M,89,33,AC60K0ACXX,14,2,
+1924_TCX,MayoBrainBank_Dickson,TemporalCortex,5.6,Control,F,90_or_above,33,AC5R6PACXX,2,2,
+1926_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,Control,F,88,33,AC44HKACXX,2,2,
+1929_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,Control,M,90_or_above,33,AC5T1WACXX,10,2.5,
+1930_TCX,MayoBrainBank_Dickson,TemporalCortex,6.3,Control,F,90_or_above,33,BC47ADACXX,18,1,
+1931_TCX,MayoBrainBank_Dickson,TemporalCortex,6.3,Control,F,90_or_above,33,AC60K0ACXX,9,3,
+1932_TCX,MayoBrainBank_Dickson,TemporalCortex,7.1,Control,F,85,33,AC60K0ACXX,,1,0
+1933_TCX,MayoBrainBank_Dickson,TemporalCortex,6.7,Control,F,90_or_above,24,BC5RNRACXX,38,1,
+1935_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,Control,F,88,33,AC5T2GACXX,3,2.5,
+1936_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,Control,F,89,33,AC450BACXX,12,2,
+1937_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,Control,F,86,33,AC6366ACXX,,2.5,0
+1940_TCX,MayoBrainBank_Dickson,TemporalCortex,5.3,Control,M,90_or_above,33,BC5RK8ACXX,14,2.5,
+1941_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,Control,M,89,33,AC6366ACXX,20,3,
+1942_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,Control,F,87,33,AC44RVACXX,6,2.5,0
+1943_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,Control,M,88,34,AC5RKCACXX,5,2.5,
+1944_TCX,MayoBrainBank_Dickson,TemporalCortex,7.3,Control,F,90_or_above,34,BC5RK6ACXX,14,3,
+1945_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,Control,M,90_or_above,23,AC5T2GACXX,,2.5,
+1951_TCX,MayoBrainBank_Dickson,TemporalCortex,8,Control,F,86,34,AC5RKCACXX,7,,
+1952_TCX,MayoBrainBank_Dickson,TemporalCortex,7.6,Control,F,90_or_above,33,BC5RNRACXX,5,3,0
+1955_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,Control,F,87,33,BC5RK8ACXX,5,1,
+1956_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,Control,M,90_or_above,33,AC450BACXX,8,3,
+1959_TCX,MayoBrainBank_Dickson,TemporalCortex,5.9,Control,F,90_or_above,33,BC5RK8ACXX,16,2,
+1960_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,Control,F,90_or_above,33,BC47B4ACXX,18,3,0
+1963_TCX,MayoBrainBank_Dickson,TemporalCortex,9.7,Control,M,90_or_above,33,AC5T1WACXX,4,3,
+1964_TCX,MayoBrainBank_Dickson,TemporalCortex,9.3,Control,M,90_or_above,23,AC44HKACXX,33,3,
+7095_TCX,MayoBrainBank_Dickson,TemporalCortex,6.6,Control,M,90_or_above,23,AC5RKCACXX,6,0,0
+7098_TCX,MayoBrainBank_Dickson,TemporalCortex,7,Control,F,90_or_above,33,BC47B4ACXX,4,2,0
+7099_TCX,MayoBrainBank_Dickson,TemporalCortex,9,Control,M,90_or_above,33,AC5T1WACXX,4,2,0
+132_TCX,NA,NA,,NA,NA,NA,,NA,9,,
+1925_TCX,NA,NA,,NA,NA,NA,,NA,,,
+1950_TCX,NA,NA,,NA,NA,NA,,NA,,,
+844_TCX,NA,NA,,NA,NA,NA,,NA,6,,
+11264_TCX,BannerSunHealth_TomBeach,TemporalCortex,6,Pathologic Aging,F,76,33,BC5RNRACXX,2,,
+11290_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.5,Pathologic Aging,F,83,22,AC5T2GACXX,4,,
+11291_TCX,BannerSunHealth_TomBeach,TemporalCortex,8,Pathologic Aging,F,88,34,BC47B4ACXX,1,,
+11312_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.4,Pathologic Aging,F,85,34,AC44HKACXX,1,,
+11313_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.6,Pathologic Aging,F,88,34,AC450BACXX,2,,
+11316_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.1,Pathologic Aging,F,80,34,BC5RNRACXX,3,,
+11327_TCX,BannerSunHealth_TomBeach,TemporalCortex,5.3,Pathologic Aging,F,88,33,BC5RK6ACXX,3,,
+11328_TCX,BannerSunHealth_TomBeach,TemporalCortex,7,Pathologic Aging,F,87,23,AC6366ACXX,2,,
+11329_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.9,Pathologic Aging,F,88,33,BC47B4ACXX,3,,
+11330_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.6,Pathologic Aging,F,80,33,AC5RKCACXX,2,,
+11331_TCX,BannerSunHealth_TomBeach,TemporalCortex,5.9,Pathologic Aging,F,87,23,AC6366ACXX,2,,
+11333_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.9,Pathologic Aging,F,88,33,AC5R6PACXX,2,,
+11334_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.7,Pathologic Aging,F,80,33,AC5RKCACXX,2,,
+11338_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.1,Pathologic Aging,F,77,34,BC47B4ACXX,3,,
+11344_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.6,Pathologic Aging,F,90_or_above,33,AC5T1WACXX,,,
+11345_TCX,BannerSunHealth_TomBeach,TemporalCortex,5.8,Pathologic Aging,F,90_or_above,33,BC5RK6ACXX,,,
+11346_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.8,Pathologic Aging,F,90_or_above,33,AC44HKACXX,,,
+11423_TCX,BannerSunHealth_TomBeach,TemporalCortex,5.9,Pathologic Aging,M,84,23,BC5RK6ACXX,4,,
+11424_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.6,Pathologic Aging,M,89,34,AC44HKACXX,2,,
+11425_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.9,Pathologic Aging,M,90_or_above,34,BC5RNRACXX,,,
+11426_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.8,Pathologic Aging,M,86,33,AC6366ACXX,2,,
+11427_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.8,Pathologic Aging,M,84,33,AC5T1WACXX,2,,
+11433_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.7,Pathologic Aging,M,90_or_above,33,BC5RNRACXX,,,
+11464_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.9,Pathologic Aging,M,80,33,AC5RKCACXX,2,,
+11471_TCX,BannerSunHealth_TomBeach,TemporalCortex,6.3,Pathologic Aging,M,86,33,BC6178ACXX,2,,
+11480_TCX,BannerSunHealth_TomBeach,TemporalCortex,7.9,Pathologic Aging,M,87,34,AC5RKCACXX,3,,
+11481_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.3,Pathologic Aging,M,84,33,BC47ADACXX,2,,
+11482_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.3,Pathologic Aging,M,84,33,AC44HKACXX,3,,
+11483_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.1,Pathologic Aging,M,78,34,AC5R6PACXX,2,,
+11486_TCX,BannerSunHealth_TomBeach,TemporalCortex,8.1,Pathologic Aging,M,90_or_above,34,BC47B4ACXX,,,
+11249_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,F,85,33,BC5RK8ACXX,13,0,0
+11253_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,PSP,F,72,33,AC60K0ACXX,,0.5,0
+11254_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,PSP,F,65,33,AC5R6PACXX,,0.5,0
+11255_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,PSP,F,69,33,BC6178ACXX,3,0.5,0
+11258_TCX,MayoBrainBank_Dickson,TemporalCortex,9.5,PSP,F,64,23,AC6366ACXX,10,0.5,1
+11259_TCX,MayoBrainBank_Dickson,TemporalCortex,9.1,PSP,F,76,34,AC450BACXX,,0.5,4
+11267_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,PSP,F,70,33,BC5RNRACXX,3,1,1
+11271_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,PSP,F,72,33,AC5RKCACXX,,1,0
+11275_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,PSP,F,81,33,BC6178ACXX,12,1,1
+11276_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,F,80,33,AC6366ACXX,,1,0
+11279_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,F,66,23,BC47ADACXX,,1,0
+11281_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,PSP,F,67,33,AC5RKCACXX,,1.5,0
+11285_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,PSP,F,77,33,BC5RNRACXX,5,1.5,0
+11287_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,F,64,24,AC60K0ACXX,,1.5,3
+11295_TCX,MayoBrainBank_Dickson,TemporalCortex,8.1,PSP,F,74,23,BC6178ACXX,8,2,2
+11298_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,PSP,F,70,33,AC44HKACXX,11,2,1
+11300_TCX,MayoBrainBank_Dickson,TemporalCortex,8.9,PSP,F,70,33,BC5RK8ACXX,,2,1
+11303_TCX,MayoBrainBank_Dickson,TemporalCortex,9.5,PSP,F,71,34,AC44HKACXX,18,2,3
+11305_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,PSP,F,65,23,AC5T1WACXX,12,2,3
+11306_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,F,73,33,AC44HKACXX,3,2,2
+11307_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,F,80,33,BC5RK8ACXX,,2.5,0
+11309_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,PSP,F,67,44,AC5T1WACXX,11,2.5,5
+11349_TCX,MayoBrainBank_Dickson,TemporalCortex,9,PSP,F,72,33,BC47B4ACXX,17,3,0
+11353_TCX,MayoBrainBank_Dickson,TemporalCortex,9.2,PSP,F,68,33,AC5T1WACXX,,3,1
+11355_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,PSP,F,80,33,AC60K0ACXX,,3,0
+11357_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,F,79,23,AC44HKACXX,,3,0
+11358_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,PSP,F,78,33,AC5R6PACXX,,3,1
+11366_TCX,MayoBrainBank_Dickson,TemporalCortex,9.2,PSP,M,65,33,BC47B4ACXX,6,0,0
+11370_TCX,MayoBrainBank_Dickson,TemporalCortex,9.5,PSP,M,62,33,BC5RK6ACXX,,0,1
+11371_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,PSP,M,68,34,AC6366ACXX,20,0,3
+11372_TCX,MayoBrainBank_Dickson,TemporalCortex,8,PSP,M,68,34,BC5RK6ACXX,,0.5,0
+11374_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,M,64,33,BC47B4ACXX,8,0.5,0
+11377_TCX,MayoBrainBank_Dickson,TemporalCortex,8.9,PSP,M,75,33,BC6178ACXX,20,0.5,0
+11381_TCX,MayoBrainBank_Dickson,TemporalCortex,9,PSP,M,79,23,AC5T2GACXX,,0.5,0
+11383_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,PSP,M,64,33,AC5T1WACXX,6,0.5,1
+11402_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,M,64,23,AC5R6PACXX,,1,1
+11403_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,M,76,33,BC6178ACXX,,1,1
+11404_TCX,MayoBrainBank_Dickson,TemporalCortex,9,PSP,M,80,33,AC44HKACXX,,1,0
+11408_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,PSP,M,61,34,AC60K0ACXX,,1,2
+11410_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,M,76,23,AC44HKACXX,21,1.5,0
+11412_TCX,MayoBrainBank_Dickson,TemporalCortex,9.5,PSP,M,76,33,BC5RK6ACXX,,1.5,1
+11438_TCX,MayoBrainBank_Dickson,TemporalCortex,9.5,PSP,M,67,34,BC5RK6ACXX,3,2,0
+11440_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,M,70,23,BC47B4ACXX,,2,0
+11443_TCX,MayoBrainBank_Dickson,TemporalCortex,8,PSP,M,85,23,AC5T1WACXX,,2,0
+11445_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,PSP,M,77,33,BC6178ACXX,3,2,3
+11447_TCX,MayoBrainBank_Dickson,TemporalCortex,8.5,PSP,M,70,33,BC6178ACXX,,2,3
+11448_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,M,71,33,AC44HKACXX,,2,1
+11449_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,PSP,M,74,34,AC5RKCACXX,,2,1
+11452_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,M,78,33,AC5RKCACXX,7,2.5,0
+11456_TCX,MayoBrainBank_Dickson,TemporalCortex,8.9,PSP,M,89,33,BC6178ACXX,,2.5,1
+11457_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,M,73,33,BC47B4ACXX,,2.5,0
+11460_TCX,MayoBrainBank_Dickson,TemporalCortex,8,PSP,M,67,34,BC47ADACXX,,2.5,3
+11489_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,M,80,33,AC5RKCACXX,,3,0
+11491_TCX,MayoBrainBank_Dickson,TemporalCortex,7.8,PSP,M,74,33,AC5RKCACXX,,3,1
+11492_TCX,MayoBrainBank_Dickson,TemporalCortex,10,PSP,M,73,33,BC47ADACXX,1,3,0
+11493_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,M,80,33,AC6366ACXX,6,3,1
+11494_TCX,MayoBrainBank_Dickson,TemporalCortex,9.1,PSP,M,86,33,BC47ADACXX,,3,1
+11495_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,M,65,33,AC5R6PACXX,,3,0
+11497_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,M,82,33,AC60K0ACXX,,3,0
+11498_TCX,MayoBrainBank_Dickson,TemporalCortex,8.4,PSP,M,75,33,AC450BACXX,15,3,0
+11499_TCX,MayoBrainBank_Dickson,TemporalCortex,9.7,PSP,M,85,33,AC5R6PACXX,,3,1
+11500_TCX,MayoBrainBank_Dickson,TemporalCortex,9.1,PSP,M,70,33,AC60K0ACXX,,3,0
+11502_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,M,75,33,BC47B4ACXX,,3,3
+11503_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,PSP,M,82,23,BC5RNRACXX,,3,3
+11505_TCX,MayoBrainBank_Dickson,TemporalCortex,8.1,PSP,M,76,33,AC6366ACXX,,3,0
+11506_TCX,MayoBrainBank_Dickson,TemporalCortex,8.2,PSP,M,82,23,BC5RNRACXX,,3,0
+11507_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,PSP,M,77,33,AC5R6PACXX,5,3,0
+6810_TCX,MayoBrainBank_Dickson,TemporalCortex,8,PSP,M,74,33,AC5R6PACXX,1,2,2
+6819_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,F,78,33,BC6178ACXX,,3,2
+6821_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,PSP,M,73,34,AC6366ACXX,,0,2
+6863_TCX,MayoBrainBank_Dickson,TemporalCortex,8.9,PSP,F,80,23,BC5RK6ACXX,3,3,0
+6870_TCX,MayoBrainBank_Dickson,TemporalCortex,9,PSP,M,73,33,BC6178ACXX,,2,1
+6872_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,M,74,33,BC47B4ACXX,,1,1
+6880_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,M,79,33,AC6366ACXX,6,3,1
+6894_TCX,MayoBrainBank_Dickson,TemporalCortex,8.6,PSP,M,69,33,AC44RVACXX,3,3,1
+6913_TCX,MayoBrainBank_Dickson,TemporalCortex,8.3,PSP,F,79,33,AC44HKACXX,2,2,1
+6914_TCX,MayoBrainBank_Dickson,TemporalCortex,8,PSP,F,78,33,BC5RK8ACXX,,3,1
+6925_TCX,MayoBrainBank_Dickson,TemporalCortex,8,PSP,F,81,33,AC5R6PACXX,9,2.5,0
+6929_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,F,76,33,AC60K0ACXX,,3,3
+6952_TCX,MayoBrainBank_Dickson,TemporalCortex,8.8,PSP,M,83,33,AC5T1WACXX,3,0,1
+6976_TCX,MayoBrainBank_Dickson,TemporalCortex,7.9,PSP,M,76,23,AC5T2GACXX,,3,0
+7000_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,PSP,M,83,23,AC44RVACXX,4,2,3
+7015_TCX,MayoBrainBank_Dickson,TemporalCortex,8.1,PSP,M,80,34,AC5T2GACXX,17,3,3
+7016_TCX,MayoBrainBank_Dickson,TemporalCortex,8.7,PSP,M,61,34,AC450BACXX,15,0.5,3
