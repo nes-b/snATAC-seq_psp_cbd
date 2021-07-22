@@ -335,7 +335,7 @@ setwd("..")
 
 
 ###################### finished script ############################.
-print("Part 08 is done.")
+print("Part 07 is done.")
 sessionInfo()
 
 
