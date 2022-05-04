@@ -13,20 +13,21 @@ This repository contains scripts and metadata of our human brain tissue study:
 - Computing environment with >= 200 GB RAM and >= 12 CPU cores for the pre-processing (01_cellranger_snappre.Rmd) 
 - Computing environment with >= 16 GB RAM (+ extra swap-memory) and >= 12 CPU cores for all other steps (recommended, Linux-based distro recommended)  
 - RStudio Server or Rstudio Desktop running with R3.6 or R4.0 (for *pathfindR*)
+- ImageJ for running image pre-processing macros
 
-Please see https://www.r-project.org/
+Please see https://www.r-project.org/ and https://imagej.nih.gov/ij/index.html
 
 
 ### Code Execution
 
-The code can be run from within R.
+The code can be run from within R and ImageJ/Macros.
 
 
 ## Contributing
 
 Dr. Viktoria C Ruf, Katrin Pratsch, Dr. Sigrun Roeber, Jeannine Widmann, Janina Mielke, 
 Dr. Dr. Mario M Dorostkar, Dr. Otto Windl, Dr. Thomas Arzberger, 
-Prof. Dr. Jochen Herms*, [Dr. Felix L Strübing](https://github.com/fstrueb) *
+Prof. Dr. Jochen Herms*, [Dr. Felix L Strübing](https://github.com/fstrueb)*
 
 * contributed equally
 
