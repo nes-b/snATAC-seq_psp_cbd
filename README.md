@@ -24,9 +24,9 @@ The code can be run from within R.
 
 ## Contributing
 
-Dr. Viktoria C Ruf, Dr. Sigrun Roeber, Janina Mielke, 
+Dr. Viktoria C Ruf, Katrin Pratsch, Dr. Sigrun Roeber, Jeannine Widmann, Janina Mielke, 
 Dr. Dr. Mario M Dorostkar, Dr. Otto Windl, Dr. Thomas Arzberger, 
-Prof. Dr. med. Jochen Herms*, [Dr. med. Felix L Strübing](https://github.com/fstrueb) *
+Prof. Dr. Jochen Herms*, [Dr. Felix L Strübing](https://github.com/fstrueb) *
 
 * contributed equally
 
