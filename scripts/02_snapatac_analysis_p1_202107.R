@@ -28,6 +28,8 @@ library(RColorBrewer)
 library(pheatmap)
 library(matrixTests)
 library(parallel)
+library(data.table)
+library(Cairo)
 setwd("..")
 source('scripts/plotViz2.R')
 
@@ -745,7 +747,54 @@ source('scripts/plotViz2.R')
     )
     dev.off()
       
-
+    
+  # Correlations: Cell type frequency  Trait severity
+    x_list <- list()
+    for(i in levels(x.after.sp@metaData$celltype)){
+      x <- x.after.sp@metaData %>% dplyr::select('celltype', 'disease', 'Thal-Phase', 'case') 
+      cellnums <- data.table::as.data.table(x)[, .N, by = .(case)] %>% as.data.frame()
+      x <- x[x$celltype==i,] %>% data.table::as.data.table()
+      x <- x[, .N, by = .(case, `Thal-Phase`)] %>% as.data.frame()
+      cellnums <- cellnums[which(cellnums$case %in% x$case),]
+      x$N <- as.numeric(x$N / cellnums$N)
+      x$`Thal-Phase` <- as.numeric(x$`Thal-Phase`)    
+      x_list[[i]] <- ggscatter(x, y = 'N', x='Thal-Phase',
+                               fill = "case", shape = 22, size = 3, 
+                               add = "reg.line", ylab = paste('# cells:',i),
+                               add.params = list(color = "grey42", fill = "lightgray"),
+                               conf.int = TRUE,
+                               cor.coef = TRUE, 
+                               cor.coeff.args = list(method = "pearson", label.x = 1, label.y = 0.4)
+      )+theme_bw()
+    }
+    
+    cairo_pdf('output/suppl_thal_rel_celltype_correlations.pdf', width = 8, height = 10)
+    plot(ggpubr::ggarrange(plotlist = x_list, ncol = 3, nrow = 4, common.legend = T))
+    dev.off()
+    
+    x_list <- list()
+    for(i in levels(x.after.sp@metaData$celltype)){
+      x <- x.after.sp@metaData %>% dplyr::select('celltype', 'disease', "Braak&Braak (NFT)", 'case') 
+      cellnums <- data.table::as.data.table(x)[, .N, by = .(case)] %>% as.data.frame()
+      x <- x[x$celltype==i,] %>% data.table::as.data.table()
+      x <- x[, .N, by = .(case, `Braak&Braak (NFT)`)] %>% as.data.frame()
+      cellnums <- cellnums[which(cellnums$case %in% x$case),]
+      x$N <- as.numeric(x$N / cellnums$N)
+      x$`Braak&Braak (NFT)` <- as.numeric(x$"Braak&Braak (NFT)")    
+      x_list[[i]] <- ggscatter(x, y = 'N', x="Braak&Braak (NFT)",
+                               fill = "case", shape = 22, size = 3, 
+                               add = "reg.line", ylab = paste('# cells:',i),
+                               add.params = list(color = "grey42", fill = "lightgray"),
+                               conf.int = TRUE,
+                               cor.coef = TRUE, 
+                               cor.coeff.args = list(method = "pearson", label.x = 0.6, label.y = 0.4)
+      )+theme_bw()
+    }
+    
+    cairo_pdf('output/suppl_braak_rel_celltype_correlations.pdf', width = 8, height = 10)
+    plot(ggpubr::ggarrange(plotlist = x_list, ncol = 3, nrow = 4, common.legend = T))
+    dev.off()
+    
   #### 3 Disease-associated GA patterns: ####
     
     # create new output sub-folder

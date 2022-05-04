@@ -234,10 +234,10 @@ library(BSgenome.Hsapiens.UCSC.hg19)
   
   temp_list <- list()
   temp_list <- mclapply(c('PSP', 'CBD'), mc.cores = 4, mc.set.seed = 42, function(dis){
-    mat <- x.sp@mmat[which(x.sp@metaData$disease %in% dis),] 
-    mat <- t(mat[,unique(c(xplan, explanatory_c, explanatory_p))])
-    mat_bg <- x.sp.ctrl@mmat[,] 
-    mat_bg <- t(mat_bg[,unique(c(xplan, explanatory_c, explanatory_p))])
+    mat <- t(x.sp@mmat[which(x.sp@metaData$disease %in% dis),])
+    #mat <- t(mat[,unique(c(xplan, explanatory_c, explanatory_p))])
+    mat_bg <- t(x.sp.ctrl@mmat[,])
+    #mat_bg <- t(mat_bg[,unique(c(xplan, explanatory_c, explanatory_p))])
     x <- row_wilcoxon_twosample(as.matrix(mat), as.matrix(mat_bg)) 
     x$FDR <- p.adjust(x$pvalue, method = 'BH', n = length(x$pvalue)) # Benjamini-Hochberg False discovery correction applied
     x$FDR[which(x$FDR>0.05)] = NA # mark those, which do not reach sign. level
@@ -250,6 +250,10 @@ library(BSgenome.Hsapiens.UCSC.hg19)
   } )
   names(temp_list) = c('PSP', 'CBD')
   TFs_table <- data.table::rbindlist(temp_list) %>% .[which(complete.cases(.)),]
+  # create new output sub-folder
+  ifelse(dir.exists(paste0('output/Ast_rev/')),
+         stop(paste0("A storage directory for this project 'Ast_rev' already exists. Please edit first.")),
+         dir.create('output/Ast_rev/'))
   write.csv(TFs_table, 'output/Ast_rev/scatac_tfs_psp_cbd.csv')
 
 ##### 2.11 GREAT analysis ####

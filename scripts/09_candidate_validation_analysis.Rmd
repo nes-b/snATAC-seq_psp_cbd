@@ -1,0 +1,172 @@
+---
+title: "Analysis of TF Validation Candidate Expression: CTSD & MAP3K8"
+author: "Nils Briel"
+date: "26/04/2022"
+output: html_notebook
+---
+
+# Cathepsin D (CTSD)
+```{r}
+library(tidyverse)
+library(ggpubr)
+library(ggstatsplot)
+```
+
+```{r}
+counts <- readODS::read_ods("refs/ctsd_counts.ods")
+print(counts)
+```
+
+```{r}
+#counts %>% summarise('CASE_PUBID') 
+
+p_weight <- counts %>% .[,1:8] %>% drop_na() %>%
+  group_by(CASE_PUBID) %>% 
+  summarise(`GFAP+_ASTROS` = sum(`GFAP+_ASTROS`),
+            `GFAP+_CTSD_ASTROS` = sum(`GFAP+_CTSD+_ASTROS`),
+            `AT8+_ASTROS` = sum(`AT8+_ASTROS`),
+            `AT8+_CTSD_ASTROS` = sum(`AT8+_CTSD+_ASTROS`)
+  )
+p_weight$DIS_ENT = c(rep('CBD',4),rep('PSP',3))
+p_weight$GFAP_CTSD_ratio = p_weight$`GFAP+_CTSD_ASTROS` / p_weight$`GFAP+_ASTROS`
+p_weight$AT8_CTSD_ratio = p_weight$`AT8+_CTSD_ASTROS` / p_weight$`AT8+_ASTROS`
+
+dat_tidy <- p_weight[,c(1,6,7,8)] %>% 
+  pivot_longer(cols = contains("ratio"),
+   names_to = "RATIO_NAME",
+   names_prefix = "rt",
+   values_to = "RATIO_VALS",
+   values_drop_na = TRUE
+ )
+dat_tidy
+```
+
+
+```{r}
+dis_cols <- c("#E41A1C","#4DAF4A")
+
+ggstatsplot::ggbetweenstats(
+  data = dat_tidy,
+  x = 'RATIO_NAME',
+  y = 'RATIO_VALS',
+  type = "robust",
+  plot.type = "box",
+  xlab = "The experiment number",
+  ylab = "Speed-of-light measurement",
+  pairwise.comparisons = TRUE,
+  p.adjust.method = "fdr",
+  outlier.tagging = TRUE
+)
+
+
+ggviolin(dat_tidy, x = 'RATIO_NAME', y = 'RATIO_VALS', fill = 'DIS_ENT', alpha = 0.8, facet.by = "DIS_ENT",  add = 'mean_se',
+                             xlab = 'AT8-CTSD / GFAP-CTSD positivity', ylab = '# cells CTSD+ / # cells') +
+  stat_compare_means(label = "p.format", method = "t.test")+
+  ggthemes::theme_few(base_family="Helvetica", base_size = 14) + scale_fill_manual(values = dis_cols)
+
+
+ggviolin(dat_tidy, x = 'RATIO_NAME', y = 'RATIO_VALS', fill = 'RATIO_NAME', alpha = 0.8, add = 'mean_se',
+                             xlab = 'AT8-CTSD / GFAP-CTSD positivity', ylab = 'Relative abundance') +
+  stat_compare_means(label = "p.format", method = "t.test")+
+  ggthemes::theme_few(base_family="Helvetica", base_size = 14) + scale_fill_manual(values = dis_cols)
+
+ggplot(dat_tidy, aes(x = RATIO_NAME, y = RATIO_VALS, fill = RATIO_NAME)) +
+  facet_grid(cols = vars(DIS_ENT)) + coord_fixed(ratio = 3/1) + 
+  geom_point(size = 3, shape = 23, stroke = 1, color = 'black') + 
+  stat_summary(fun.data='mean_se', fun.args = list(mult=1), 
+        geom="errorbar", color="black", width=0.25, size = 0.5) +
+  stat_summary(fun.y=mean, geom="point", color="black", size = 2) +
+  ggthemes::theme_few(base_family="Helvetica", base_size = 14) + 
+  scale_fill_manual(values = dis_cols)
+
+grouped_ggwithinstats(
+  data = dat_tidy, x = RATIO_NAME, y = RATIO_VALS, fill = RATIO_NAME, grouping.var = DIS_ENT,
+  type = "p", effsize.type = "d", conf.level = 0.95,
+  xlab = '', ylab = '# MAP3K8+ astrocytes / # astrocytes') + 
+  scale_color_manual(values = dis_cols)
+
+```
+
+# Mitogen-Activated Protein Kinase Kinase Kinase 8 (MAP3K8)
+```{r}
+library(tidyverse)
+library(ggpubr)
+```
+
+```{r}
+counts <- readODS::read_ods("refs/map3k8_counts.ods") %>% .[,1:8] %>% drop_na()
+print(counts)
+```
+
+```{r}
+p_weight <- counts %>% 
+  group_by(CASE_PUBID) %>% 
+  summarise(`GFAP+_ASTROS` = sum(`GFAP+_ASTROS`),
+            `GFAP+_MAP3K8+_ASTROS` = sum(`GFAP+_MAP3K8+_ASTROS`),
+            `AT8+_ASTROS` = sum(`AT8+_ASTROS`),
+            `AT8+_MAP3K8+_ASTROS` = sum(`AT8+_MAP3K8+_ASTROS`)
+  )
+p_weight$DIS_ENT = c(rep('CBD',4),rep('PSP',4))
+p_weight$GFAP_MAP3K8_ratio = p_weight$`GFAP+_MAP3K8+_ASTROS` / p_weight$`GFAP+_ASTROS`
+p_weight$AT8_MAP3K8_ratio = p_weight$`AT8+_MAP3K8+_ASTROS` / p_weight$`AT8+_ASTROS`
+
+dat_tidy <- p_weight[,c(1,6,7,8)] %>% 
+  pivot_longer(cols = contains("ratio"),
+   names_to = "RATIO_NAME",
+   names_prefix = "rt",
+   values_to = "RATIO_VALS",
+   values_drop_na = TRUE
+ )
+dat_tidy
+```
+
+
+```{r fig.height=5, fig.width=10}
+dis_cols <- c("#E41A1C","#4DAF4A")
+
+ggstatsplot::ggbetweenstats(
+  data = dat_tidy,
+  x = 'RATIO_NAME',
+  y = 'RATIO_VALS',
+  type = "robust",
+  plot.type = "box",
+  xlab = "The experiment number",
+  ylab = "Speed-of-light measurement",
+  pairwise.comparisons = TRUE,
+  p.adjust.method = "fdr",
+  outlier.tagging = TRUE
+)
+
+ggviolin(dat_tidy, x = 'RATIO_NAME', y = 'RATIO_VALS', fill = 'DIS_ENT', alpha = 0.8, facet.by = "DIS_ENT", add = 'mean_se',
+         xlab = 'AT8-MAP3K8 / GFAP-MAP3K8 positivity', ylab = 'Relative abundance') +
+  stat_compare_means(label = "p.format", method = "t.test")+
+  ggthemes::theme_few(base_family="Helvetica", base_size = 14) + 
+  scale_fill_manual(values = dis_cols)
+
+ggviolin(dat_tidy, x = 'RATIO_NAME', y = 'RATIO_VALS', fill = 'RATIO_NAME', alpha = 0.8, add = 'mean_se',
+         xlab = 'AT8-MAP3K8 / GFAP-MAP3K8 positivity', ylab = 'Relative abundance') +
+  stat_compare_means(label = "p.format", method = "t.test")+
+  ggthemes::theme_few(base_family="Helvetica", base_size = 14) + 
+  scale_fill_manual(values = dis_cols)
+
+ggplot(dat_tidy, aes(x = RATIO_NAME, y = RATIO_VALS, fill = RATIO_NAME)) +
+  facet_grid(cols = vars(DIS_ENT)) + coord_fixed(ratio = 3/1) + 
+  geom_point(size = 3, shape = 23, stroke = 1, color = 'black') + 
+  stat_summary(fun.data='mean_se', fun.args = list(mult=1), 
+        geom="errorbar", color="black", width=0.25, size = 0.5) +
+  stat_summary(fun.y=mean, geom="point", color="black", size = 2) +
+  ggthemes::theme_few(base_family="Helvetica", base_size = 14) + 
+  scale_fill_manual(values = dis_cols)
+
+grouped_ggwithinstats(
+  data = dat_tidy, x = RATIO_NAME, y = RATIO_VALS, fill = RATIO_NAME, grouping.var = DIS_ENT,
+  type = "p", effsize.type = "d", conf.level = 0.95,
+  xlab = '', ylab = '# MAP3K8+ astrocytes / # astrocytes') + 
+  scale_color_manual(values = dis_cols)
+
+```
+
+```{r}
+sessionInfo()
+```
+

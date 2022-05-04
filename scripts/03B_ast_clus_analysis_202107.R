@@ -190,6 +190,7 @@ library(gridExtra)
   annot <- getTFannotations(unique(colnames(x.sp@mmat)))
   
   levs <- levels(x.sp@metaData[,'disease'])[2:3]
+  x.sp.ctrl <- x.sp[which(x.sp@metaData$disease != 'Ctrl'),]
   temp_list <- list()
   temp_list <- mclapply(levs, mc.cores = 4, mc.set.seed = 42, function(dis){
     mat <- x.sp@mmat[which(x.sp@metaData[,'disease'] %in% dis),] 
@@ -309,11 +310,11 @@ great.ls <- mclapply(as.numeric(levels(x.sp@cluster)), mc.cores = 4, function(i)
   } else {print(paste0('Cluster ', i,' excluded from rGREAT analysis, because it lacks significant DAR-hits.'))}
 })
 
+new.cluster.ids <- 1:6
+
 names(great.ls) <- new.cluster.ids
 names(great.res) <- new.cluster.ids
 great.ls[[3]][[1]]
-
-new.cluster.ids <- 1:6
 
 # plot tile.plots 
 plot_ls <- list()

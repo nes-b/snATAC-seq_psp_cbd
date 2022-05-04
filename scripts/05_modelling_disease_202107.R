@@ -1,7 +1,8 @@
 ###########################
 ## TITLE: 05 modelling disease-specific TF dynamics 
 ## Author: Nils Briel, Feodor-Lynen-Strasse 17, 81377 Munich, Bavaria
-## This Rscript establishes a logistic regression model to predict disease state from sc-data and to understand the contributions to this prediction
+## Date: "23/08/2021"
+## This Rscript establishes a boosted decision tree-based model to predict disease state from sc-data and to understand the contributions to this prediction
 ##############################
 library(SnapATAC)
 library(caret)

@@ -1,7 +1,7 @@
 ###########################.
 ## TITLE: Cicero analysis + trajectories
 ## Author: Nils Briel, Feodor-Lynen-Strasse 23, 81377 Munich, Bavaria
-## Date: "22/07/2021"
+## Date: "23/08/2021"
 ## Description: This R script is written to convert the astrocytes snap-file to cicero (1) and to compute cicero-connections on it(2).
 ##              In the next step (3) Seurat's/Signac's marker genes plot is used to visualize DARs/closest genes in the underlying dataset.
 ##              The complete steps summarized under (4) compute cicero/monocle3 dimension reduction, UMAP embeddings, clustering and pseudotime trajectories 

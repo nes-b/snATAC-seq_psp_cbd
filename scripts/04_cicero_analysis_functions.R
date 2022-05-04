@@ -1,6 +1,7 @@
 ###########################
 ## TITLE: Cicero analysis functions
 ## Author: Nils Briel, Feodor-Lynen-Strasse 23, 81377 Munich, Bavaria
+## Date: "23/08/2021"
 ## Description: helper functions to process the scATAC data sets with cicero, tradeSeq, and custom vizualization functions
 ###########################
 library(SnapATAC)
@@ -192,15 +193,14 @@ snapToCicero <- function(x.sp, preprocces_cic = F, preprocess_traj = F, prep = '
   
   if(preprocess_traj){
     print(paste0('Processing with ', prep,', cosine and UMAP for trajectory inference.'))
-    input_cds <- preprocess_cds(input_cds, method = prep, verbose = T)
+    input_cds <- preprocess_cds(input_cds, method = 'PCA', verbose = T)
     input_cds <- align_cds(input_cds, alignment_group = 'case', preprocess_method = prep)
-    input_cds <- reduce_dimension(input_cds,umap.metric = "cosine",umap.min_dist = umap.min_dist, umap.n_neighbors = umap.n_neighbors, cores = cores) 
+    input_cds <- reduce_dimension(input_cds, reduction_method = 'UMAP', umap.metric = "cosine",umap.min_dist = umap.min_dist, umap.n_neighbors = umap.n_neighbors, cores = cores) 
     
     # Running the clustering method. This is necessary to the construct the graph
-    input_cds <- cluster_cells(input_cds, reduction_method = "UMAP", num_iter = 5,
+    input_cds <- cluster_cells(input_cds, reduction_method = 'UMAP', num_iter = 5,
                                 random_seed = 42)
-    input_cds@colData$case <- as.factor(input_cds@colData$case)
-    
+
     # Construct the graph
     set.seed(22)
     learn_graph_control_params <- list(
@@ -677,3 +677,87 @@ getTFannotations <- function(motifs, genes = F){
     
     return(annot)
 }
+
+
+### get smoother predictions from sce i tradeSeq -> this is an adapted version from: https://github.com/statOmics/tradeSeq/blob/dae439bda61aec6e1fda01d0c5a7c403c4cdfa50/R/utils.R
+
+getPredictRangeDf <- function(dm, lineageId, conditionId = NULL, nPoints = 100){
+  vars <- dm[1, ]
+  if ("y" %in% colnames(vars)) {
+    vars <- vars[!colnames(vars) %in% "y"]
+    off <- 1
+  } else {
+    off <- 0
+  }
+  offsetId <- grep(x = colnames(vars), pattern = "offset")
+  offsetName <- colnames(vars)[offsetId]
+  offsetName <- substr(offsetName, start = 8, stop = nchar(offsetName) - 1)
+  names(vars)[offsetId] <- offsetName
+  # set all times on 0
+  vars[, grep(colnames(vars), pattern = "t[1-9]")] <- 0
+  # set all lineages on 0
+  vars[, grep(colnames(vars), pattern = "l[1-9]")] <- 0
+  # duplicate to nPoints
+  vars <- rbind(vars, vars[rep(1, nPoints - 1), ])
+  # set range of pseudotime for lineage of interest
+  if (is.null(conditionId)) {
+    lineageIds <- grep(colnames(vars), pattern = paste0("l", lineageId, "($|_)"))
+  } else {
+    lineageIds <- grep(colnames(vars), pattern = paste0("l", lineageId,
+                                                        "_", conditionId, "$"))
+  }
+  if (length(lineageIds) == 1){
+    lineageData <- dm[dm[, lineageIds + off] == 1,
+                      paste0("t", lineageId)]
+  } else {
+    lineageData <- dm[rowSums(dm[, lineageIds + off]) == 1,
+                      paste0("t", lineageId)]
+  }
+  # make sure lineage starts at zero
+  if(min(lineageData) / max(lineageData) < .01) {
+    lineageData[which.min(lineageData)] <- 0
+  }
+  vars[, lineageIds] <- 1 / length(lineageIds)
+  # set lineage
+  vars[, paste0("t", lineageId)] <- seq(min(lineageData),
+                                        max(lineageData),
+                                        length = nPoints)
+  # set offset
+  vars[, offsetName] <- mean(dm[, grep(x = colnames(dm),
+                                       pattern = "offset")])
+  return(vars)
+}
+
+predictSmooth <- function(model, nPoints = 100) {
+  data <- model$model
+  y <- data$y
+  
+  #construct time variable based on cell assignments.
+  nCurves <- length(model$smooth)
+  col <- timeAll <- rep(0, nrow(data))
+  for (jj in seq_len(nCurves)) {
+    for (ii in seq_len(nrow(data))) {
+      if (data[ii, paste0("l", jj)] == 1) {
+        timeAll[ii] <- data[ii, paste0("t", jj)]
+        col[ii] <- jj
+      } else {
+        next
+      }
+    }
+  }
+  
+  # plot raw data
+  df <- data.frame("time" = timeAll,
+                   "gene_count" = y,
+                   "lineage" = as.character(col))
+  rows <- sample(seq_len(nrow(df)), nrow(df) * sample, replace = FALSE)
+  df <- df[rows, ]
+  
+  # predict smoothers across the range
+  
+  df <- getPredictRangeDf(model$model, jj, nPoints = nPoints)
+  yhat <- predict(model, newdata = df, type = "response")
+  
+  return(yhat)
+}
+
