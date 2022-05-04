@@ -2,7 +2,9 @@ contributors contact information:
 
 Nils.Briel@med.uni-muenchen.de (correspondence repository)
 Viktoria.Ruf@med.uni-muenchen.de
+Katrin.Pratsch@dzne.de
 Sigrun.Roeber@med.uni-muenchen.de
+Jeannine.Widmann@med.uni-muenchen.de
 Janina.Mielke@med.uni-muenchen.de
 Mario.Dorostkar@med.uni-muenchen.de
 Otto.Windl@med.uni-muenchen.de
