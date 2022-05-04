@@ -52,7 +52,7 @@ If you use parts of this workflow, please cite:
 
 ## Ethics statement
 
-The available image resources stem from deceased individuals, who had confirmed to the use of their brain tissue for biomedical research.
+The available resources stem from deceased individuals, who had confirmed to the use of their brain tissue for biomedical research.
 All data is anonymised, so that access to the actual identifiers is restricted to the contributors themselves. \
 This project had been accepted by the Ethic Board of the Ludwig-Maximilians-University, Munich.
 
