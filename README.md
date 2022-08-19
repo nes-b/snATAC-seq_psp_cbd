@@ -6,6 +6,7 @@
 This repository contains scripts and metadata of our human brain tissue study: 
 
 **Single Nucleus Accessible Chromatin Profiling Highlights Distinct Astrocyte Signatures in Progressive Supranuclear Palsy and Corticobasal Degeneration**. 
+*https://doi.org/10.1007/s00401-022-02483-8*
 
 
 ### Prerequisites
@@ -48,7 +49,9 @@ See also the list of [contributors](https://github.com/nes-b/snATACseq_psp_cbd/b
 ## Citation
 
 If you use parts of this workflow, please cite:
-- https://github.com/nes-b/scATACseq_psp_cbd 
+- the original article: Briel, N., Ruf, V.C., Pratsch, K. et al. Single-nucleus chromatin accessibility profiling highlights distinct astrocyte signatures in progressive supranuclear palsy and corticobasal degeneration. Acta Neuropathol (2022). https://doi.org/10.1007/s00401-022-02483-8
+
+- This repository: https://github.com/nes-b/scATACseq_psp_cbd 
 
 
 ## Ethics statement
