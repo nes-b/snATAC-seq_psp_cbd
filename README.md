@@ -6,7 +6,8 @@
 This repository adds on to snATAC-seq study in PSP/CBD brains [main branch](https://github.com/nes-b/snATAC-seq_psp_cbd).
 Here we assess cell-cell-communication with [CellChat](https://github.com/sqjin/CellChat).
 
-[Cellchat.pdf](https://github.com/nes-b/snATAC-seq_psp_cbd/files/9818017/Cellchat.pdf)
+![Cellchat.pdf](https://github.com/nes-b/snATAC-seq_psp_cbd/files/9818017/Cellchat.pdf)
+
 
 ## Contributing
 
