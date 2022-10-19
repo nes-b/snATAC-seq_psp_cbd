@@ -3,11 +3,12 @@
 
 ## Background
 
-This repository adds on to snATAC-seq study in PSP/CBD brains [main branch](https://github.com/nes-b/snATAC-seq_psp_cbd).
-Here we assess cell-cell-communication with [CellChat](https://github.com/sqjin/CellChat).
+This repository adds on to snATAC-seq study in PSP/CBD brains [main branch](https://github.com/nes-b/snATAC-seq_psp_cbd), and has been presented at the [ISMND2022](https://www.ismnd2022.com/).
+We assessed cell-cell-communication with [CellChat](https://github.com/sqjin/CellChat).
 
 ![Cellchat](https://user-images.githubusercontent.com/52217939/196627996-c3a2009c-02be-4f48-bf32-a654d65e52cc.png)
 
+See also [cellchat_net_diffsig_cbd.csv](https://github.com/nes-b/snATAC-seq_psp_cbd/blob/Cell-Cell-Communication/cellchat_net_diffsig_cbd.csv), [cellchat_net_diffsig_psp.csv](https://github.com/nes-b/snATAC-seq_psp_cbd/blob/Cell-Cell-Communication/cellchat_net_diffsig_psp.csv).
 
 ## Contributing
 
