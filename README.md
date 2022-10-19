@@ -1,36 +1,15 @@
-# Single-nucleus ATAC-sequencing in PSP and CBD brains
+# Cell-Cell-Communication Analysis in the ZNP snATAC-seq PSP/CBD cohort
 
 
 ## Background
 
-This repository contains scripts and metadata of our human brain tissue study: 
-
-**Single Nucleus Accessible Chromatin Profiling Highlights Distinct Astrocyte Signatures in Progressive Supranuclear Palsy and Corticobasal Degeneration**. 
-*https://doi.org/10.1007/s00401-022-02483-8*
-
-
-### Prerequisites
-
-- Computing environment with >= 200 GB RAM and >= 12 CPU cores for the pre-processing (01_cellranger_snappre.Rmd) 
-- Computing environment with >= 16 GB RAM (+ extra swap-memory) and >= 12 CPU cores for all other steps (recommended, Linux-based distro recommended)  
-- RStudio Server or Rstudio Desktop running with R3.6 or R4.0 (for *pathfindR*)
-- ImageJ for running image pre-processing macros
-
-Please see https://www.r-project.org/ and https://imagej.nih.gov/ij/index.html
-
-
-### Code Execution
-
-The code can be run from within R and ImageJ/Macros.
+This repository adds on to snATAC-seq study in PSP/CBD brains [main branch](https://github.com/nes-b/snATAC-seq_psp_cbd).
+Here we assess cell-cell-communication with [CellChat](https://github.com/sqjin/CellChat).
 
 
 ## Contributing
 
-Dr. Viktoria C Ruf, Katrin Pratsch, Dr. Sigrun Roeber, Jeannine Widmann, Janina Mielke, 
-Dr. Dr. Mario M Dorostkar, Dr. Otto Windl, Dr. Thomas Arzberger, 
-Prof. Dr. Jochen Herms*, [Dr. Felix L Strübing](https://github.com/fstrueb)*
-
-* contributed equally
+Dr. Viktoria C Ruf, Prof. Dr. Jochen Herms, [Dr. Felix L Strübing](https://github.com/fstrueb)
 
 Center for Neuropathology, \
 German Center for Neurodegenerative Diseases, Translational Research \
@@ -43,13 +22,11 @@ Germany
 
 * **Nils Briel** - [nes-b](https://github.com/nes-b)
 
-See also the list of [contributors](https://github.com/nes-b/snATACseq_psp_cbd/blob/master/contributors.txt) who participated in this project.
-
 
 ## Citation
 
-If you use parts of this workflow, please cite:
-- the original article: Briel, N., Ruf, V.C., Pratsch, K. et al. Single-nucleus chromatin accessibility profiling highlights distinct astrocyte signatures in progressive supranuclear palsy and corticobasal degeneration. Acta Neuropathol (2022). https://doi.org/10.1007/s00401-022-02483-8
+If you use parts of this workflow or data set, please cite:
+- the original article: Briel, N., Ruf, V.C., Pratsch, K. et al. *Single-nucleus chromatin accessibility profiling highlights distinct astrocyte signatures in progressive supranuclear palsy and corticobasal degeneration*. Acta Neuropathol (2022). https://doi.org/10.1007/s00401-022-02483-8
 
 - This repository: https://github.com/nes-b/scATACseq_psp_cbd 
 
