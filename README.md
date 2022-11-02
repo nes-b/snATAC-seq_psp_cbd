@@ -18,6 +18,7 @@ This repository contains scripts and metadata of our human brain tissue study:
 
 Please see https://www.r-project.org/ and https://imagej.nih.gov/ij/index.html
 
+- Raw data (bam files) can be accessed via the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/view/PRJEB54978)
 
 ### Code Execution
 
